@@ -1,0 +1,39 @@
+services:
+  # 1. Banco de Dados PostgreSQL Gratuito (válido por 90 dias no free tier)
+  - type: psql
+    name: votorantim-futebol-db
+    plan: free
+
+  # 2. Backend (NestJS API)
+  - type: web
+    name: votorantim-futebol-api
+    env: node
+    plan: free
+    region: ohio
+    # Assumindo que a raiz do repositório é onde está o package.json do monorepo
+    buildCommand: npm install && npx turbo run build --filter=@votorantim-futebol/api
+    startCommand: node apps/api/dist/main.js
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: votorantim-futebol-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: PORT
+        value: 3001
+
+  # 3. Frontend (Next.js App)
+  - type: web
+    name: votorantim-futebol-web
+    env: node
+    plan: free
+    region: ohio
+    buildCommand: npm install && npx turbo run build --filter=@votorantim-futebol/web
+    startCommand: npm start --workspace=@votorantim-futebol/web
+    envVars:
+      - key: NEXT_PUBLIC_API_URL
+        fromService:
+          type: web
+          name: votorantim-futebol-api
+          property: url
