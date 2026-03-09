@@ -182,8 +182,8 @@ export class InvoiceService {
             select: { sellerId: true },
         });
         const sellerIds = [
-            ...pendingLinks.map(l => l.sellerId),
-            ...approvedNoPercLinks.map(l => l.sellerId),
+            ...pendingLinks.map((l: any) => l.sellerId),
+            ...approvedNoPercLinks.map((l: any) => l.sellerId),
         ];
         if (sellerIds.length === 0) return 0;
 

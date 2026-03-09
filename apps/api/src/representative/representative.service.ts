@@ -31,11 +31,11 @@ export class RepresentativeService {
         let totalCoinsGenerated = 0;
         let totalBalanceInNetwork = 0;
 
-        stores.forEach(store => {
+        stores.forEach((store: any) => {
             totalSellers += store.sellers.length;
             totalBalanceInNetwork += store.coinBalance;
-            store.sellers.forEach(s => totalBalanceInNetwork += s.coinBalance);
-            store.invoices.forEach(i => totalCoinsGenerated += i.coinsIssued);
+            store.sellers.forEach((s: any) => totalBalanceInNetwork += s.coinBalance);
+            store.invoices.forEach((i: any) => totalCoinsGenerated += i.coinsIssued);
         });
 
         const mappedStores = await Promise.all(stores.map(async (u: any) => {

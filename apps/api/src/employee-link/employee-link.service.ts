@@ -66,7 +66,7 @@ export class EmployeeLinkService {
         });
 
         // Enriquecer com contagem de standby invoices de cada vendedor
-        const enriched = await Promise.all(links.map(async (link) => {
+        const enriched = await Promise.all(links.map(async (link: any) => {
             const standbyCount = await this.prisma.invoice.count({
                 where: { userId: link.sellerId, status: 'STANDBY' as any },
             });

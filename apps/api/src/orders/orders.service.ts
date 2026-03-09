@@ -13,7 +13,7 @@ export class OrdersService {
     ) { }
 
     async create(userId: string, dto: CreateOrderDto) {
-        return this.prisma.$transaction(async (tx) => {
+        return this.prisma.$transaction(async (tx: any) => {
             // 1. Get and validate package
             const pkg = await tx.eventPackage.findUnique({
                 where: { id: dto.packageId }

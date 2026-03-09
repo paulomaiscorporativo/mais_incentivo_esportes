@@ -6,7 +6,7 @@ export class LedgerService {
     constructor(private prisma: PrismaService) { }
 
     async createEntry(userId: string, amount: number, type: string, description: string, relatedEntityId?: string) {
-        return this.prisma.$transaction(async (tx) => {
+        return this.prisma.$transaction(async (tx: any) => {
             // 1. Create Ledger entry
             const entry = await tx.ledger.create({
                 data: {
