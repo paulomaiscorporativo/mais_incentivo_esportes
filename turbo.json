@@ -1,5 +1,9 @@
 {
     "$schema": "https://turbo.build/schema.json",
+    "globalPassThroughEnv": [
+        "DATABASE_URL",
+        "NODE_ENV"
+    ],
     "tasks": {
         "generate": {
             "cache": false
