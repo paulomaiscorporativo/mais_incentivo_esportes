@@ -1,10 +1,9 @@
-services:
-  # 1. Banco de Dados PostgreSQL Gratuito
-  - type: psql
-    name: maiscorporativo-db
+databases:
+  - name: maiscorporativo-db
     plan: free
 
-  # 2. Backend (NestJS API)
+services:
+  # 1. Backend (NestJS API)
   - type: web
     name: maiscorporativo-api
     env: node
@@ -22,7 +21,7 @@ services:
       - key: PORT
         value: 3001
 
-  # 3. Frontend (Next.js App)
+  # 2. Frontend (Next.js App)
   - type: web
     name: maiscorporativo-web
     env: node
