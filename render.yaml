@@ -31,9 +31,6 @@ services:
     startCommand: npm start --workspace=@votorantim-futebol/web
     envVars:
       - key: NEXT_PUBLIC_API_URL
-        fromService:
-          type: web
-          name: maiscorporativo-api
-          property: url
+        value: https://maiscorporativo-api.onrender.com
       - key: NODE_ENV
         value: production
