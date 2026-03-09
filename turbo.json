@@ -25,6 +25,12 @@
                 "generate"
             ]
         },
+        "seed:admin": {
+            "cache": false,
+            "dependsOn": [
+                "generate"
+            ]
+        },
         "lint": {
             "outputs": []
         },
