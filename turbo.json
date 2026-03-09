@@ -15,6 +15,12 @@
                 "dist/**"
             ]
         },
+        "db:push": {
+            "cache": false,
+            "dependsOn": [
+                "generate"
+            ]
+        },
         "lint": {
             "outputs": []
         },
